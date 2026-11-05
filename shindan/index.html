@@ -84,6 +84,21 @@ p{margin:0}
 .code b{font-family:var(--f-display);font-size:1.4rem;letter-spacing:.08em}
 .copy{border:1.5px solid var(--ink);background:transparent;color:var(--ink);border-radius:999px;padding:6px 14px;font:inherit;font-size:.85rem;font-weight:700;cursor:pointer;white-space:nowrap}
 .rx .btn-line{margin-top:14px}
+.steps3{display:flex;gap:6px;margin-top:22px;list-style:none;padding:0}
+.steps3 li{flex:1;text-align:center;font-size:.72rem;font-weight:700;color:var(--ink-soft);padding:8px 4px;border-radius:10px;background:var(--paper);border:1.5px solid var(--rule);line-height:1.4}
+.steps3 li.done{background:var(--mint);border-color:var(--mint-deep);color:var(--mint-deep)}
+.steps3 li.done::before{content:"✓ "}
+.hw{margin-top:18px;border:2px solid var(--ink);border-radius:16px;padding:18px;background:var(--card)}
+.hw .hw-tag{display:inline-block;font-size:.78rem;font-weight:700;background:var(--ink);color:var(--card);border-radius:999px;padding:2px 12px}
+.hw h3{font-size:1.15rem;margin-top:10px}
+.hw ul{margin:10px 0 0;padding-left:1.2em;font-size:.92rem;color:var(--ink-soft)}
+.when{margin-top:16px}
+.when p{font-weight:700;font-size:.95rem}
+.when-opts{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
+.when-opts button{border:1.5px solid var(--ink);background:var(--card);color:var(--ink);border-radius:999px;padding:8px 16px;font:inherit;font-weight:700;cursor:pointer}
+.when-opts button[aria-pressed="true"]{background:var(--coral);border-color:var(--coral);color:var(--coral-ink)}
+.decided{margin-top:12px;font-family:var(--f-hand);font-weight:600;color:var(--coral);font-size:1.05rem}
+.gets{margin:10px 0 0;padding-left:1.2em;font-size:.92rem}
 .note{font-size:.8rem;color:var(--ink-soft);margin-top:18px}
 a:focus-visible,button:focus-visible{outline:3px solid var(--coral);outline-offset:3px}
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
@@ -99,11 +114,11 @@ a:focus-visible,button:focus-visible{outline:3px solid var(--coral);outline-offs
 const LINE_ID = "@693vveyv";
 
 const TYPES = {
-  mix:   {code:"処方箋A", name:"財布ごちゃまぜタイプ", lead:"事業のお金と家のお金が、同じお財布で動いているかもしれません。頑張って稼いでいるのに、残っている実感がうすい状態です。", sym:["事業用と生活用の口座が分かれていない","毎月いくら残っているか、すぐ言えない","確定申告の時期に慌てがち"]},
-  ins:   {code:"処方箋B", name:"保険入りすぎタイプ", lead:"なんとなく入った保険が、家計を少しずつ圧迫しているかもしれません。必要な保障を残しつつ、整理できる余地がありそうです。", sym:["入っている保険の数や中身がうろ覚え","すすめられるままに入った保険がある","保険料が毎月の固定費の中で大きい"]},
-  grow:  {code:"処方箋C", name:"貯めるのは得意、増やすのは不安タイプ", lead:"コツコツ貯める力はしっかりあります。次は、そのお金に働いてもらう準備をする段階です。", sym:["NISAやiDeCoが気になっているけど、まだ","預金がいちばん安心だと思っている","何から始めればいいかわからない"]},
-  future:{code:"処方箋D", name:"未来ぼんやり不安タイプ", lead:"老後や教育費のことを考えると、なんとなく不安になる状態です。数字にして見える形にすると、不安はぐっと小さくなります。", sym:["将来いくら必要か、イメージがわかない","考えると不安になるので、つい後回し","今のペースで大丈夫か確かめたい"]},
-  attack:{code:"処方箋E", name:"攻めどきタイプ", lead:"お金の土台はかなり整っています。今は、やりたいことに向けて次の一手を考えるタイミングです。", sym:["お金の流れはおおむね把握できている","備えもある程度できている","もう一段、仕事や暮らしを広げたい"]}
+  mix:   {code:"処方箋A", name:"財布ごちゃまぜタイプ", lead:"事業のお金と家のお金が、同じお財布で動いているかもしれません。頑張って稼いでいるのに、残っている実感がうすい状態です。", sym:["事業用と生活用の口座が分かれていない","毎月いくら残っているか、すぐ言えない","確定申告の時期に慌てがち"], hw:{min:"2", title:"事業用にする口座を、1つだけ決める", steps:["今ある口座の中から選べばOK（新しく作らなくて大丈夫）", "決めたら、口座名をメモに書くだけ"]}},
+  ins:   {code:"処方箋B", name:"保険入りすぎタイプ", lead:"なんとなく入った保険が、家計を少しずつ圧迫しているかもしれません。必要な保障を残しつつ、整理できる余地がありそうです。", sym:["入っている保険の数や中身がうろ覚え","すすめられるままに入った保険がある","保険料が毎月の固定費の中で大きい"], hw:{min:"5", title:"入っている保険の「名前」と「毎月の金額」を3つ書き出す", steps:["保険証券か保険会社のアプリを開くだけ", "内容がわからなくても大丈夫"]}},
+  grow:  {code:"処方箋C", name:"貯めるのは得意、増やすのは不安タイプ", lead:"コツコツ貯める力はしっかりあります。次は、そのお金に働いてもらう準備をする段階です。", sym:["NISAやiDeCoが気になっているけど、まだ","預金がいちばん安心だと思っている","何から始めればいいかわからない"], hw:{min:"2", title:"預金が「生活費の何か月分」あるか計算する", steps:["毎月の生活費 × ○か月で、ざっくりでOK", "電卓アプリで1回計算するだけ"]}},
+  future:{code:"処方箋D", name:"未来ぼんやり不安タイプ", lead:"老後や教育費のことを考えると、なんとなく不安になる状態です。数字にして見える形にすると、不安はぐっと小さくなります。", sym:["将来いくら必要か、イメージがわかない","考えると不安になるので、つい後回し","今のペースで大丈夫か確かめたい"], hw:{min:"3", title:"10年以内にお金がかかりそうなことを3つ書く", steps:["例：車の買い替え、子どもの進学、リフォーム", "金額はわからなくてOK"]}},
+  attack:{code:"処方箋E", name:"攻めどきタイプ", lead:"お金の土台はかなり整っています。今は、やりたいことに向けて次の一手を考えるタイミングです。", sym:["お金の流れはおおむね把握できている","備えもある程度できている","もう一段、仕事や暮らしを広げたい"], hw:{min:"3", title:"この1年でやりたいことを1つと、その金額を書く", steps:["仕事・家族・自分のこと、どれでもOK", "金額は「だいたい」で大丈夫"]}}
 };
 const ORDER = ["mix","ins","grow","future","attack"];
 
@@ -184,16 +199,36 @@ function result(){
     <div class="dx-label">あなたの診断名</div>
     <div class="dx-name">${esc(t.name)}</div>
     <p class="dx-lead">${esc(t.lead)}</p>
-    <ul class="symptoms">${t.sym.map(s=>`<li>${esc(s)}</li>`).join("")}</ul>
+    <p style="margin-top:16px;font-weight:700">こんな場面、思い当たりませんか？</p>
+    <ul class="symptoms" style="margin-top:8px">${t.sym.map(s=>`<li>${esc(s)}</li>`).join("")}</ul>
+    <ol class="steps3" id="steps3"><li class="done">診断</li><li id="st2">宿題を決める</li><li id="st3">LINEで続きを受け取る</li></ol>
+    <div class="hw">
+      <span class="hw-tag">📝 今日の宿題（${esc(t.hw.min)}分でできます）</span>
+      <h3>${esc(t.hw.title)}</h3>
+      <ul>${t.hw.steps.map(s=>`<li>${esc(s)}</li>`).join("")}</ul>
+      <div class="when"><p>いつやりますか？</p>
+        <div class="when-opts">${["今夜","明日の朝","今週末"].map(w=>`<button type="button" data-w="${w}" aria-pressed="false">${w}</button>`).join("")}</div>
+        <p class="decided" id="decided" hidden></p>
+      </div>
+    </div>
     <div class="rx">
-      <h3>あなた専用の処方箋をお渡しします</h3>
-      <p>LINEのトークで、下の言葉を送ってください。このタイプの方に向けた「今日からできること」が届きます。</p>
+      <h3>続きの処方箋は、LINEで受け取れます</h3>
+      <ul class="gets"><li>このタイプの「つまずきポイント」と抜け出すコツ</li><li>宿題ができたら届く、次の一歩</li></ul>
+      <p>LINEのトークで、下の言葉を送ってください。</p>
       <div class="code"><b>${esc(t.code)}</b><button class="copy" id="copy">コピー</button></div>
-      ${lineHref?`<a class="btn btn-line" href="${lineHref}">LINEで「${esc(t.code)}」を送る</a>`:""}
+      ${lineHref?`<a class="btn btn-line" id="lineBtn" href="${lineHref}">LINEで「${esc(t.code)}」を送る</a>`:""}
     </div>
     <button class="btn btn-plain" id="again" style="margin-top:14px">もう一度診断する</button>
     <p class="note">※この診断は一般的な傾向をお伝えするものです。くわしくは個別相談で一緒に確認しましょう。</p>
   </section>`;
+  app.querySelectorAll(".when-opts button").forEach(b=>b.onclick=()=>{
+    app.querySelectorAll(".when-opts button").forEach(x=>x.setAttribute("aria-pressed", x===b?"true":"false"));
+    const d=document.getElementById("decided"); d.hidden=false;
+    d.textContent=`決まり！「${b.dataset.w}」にやりましょう。2歩目もクリアです🌱`;
+    document.getElementById("st2").classList.add("done");
+    try{ gtag('event','shindan_commit',{result_type:t.name, when:b.dataset.w}); }catch(e){}
+  });
+  const lb=document.getElementById("lineBtn"); if(lb) lb.addEventListener("click",()=>{ document.getElementById("st3").classList.add("done"); try{ gtag('event','shindan_line_click',{result_type:t.name}); }catch(e){} });
   document.getElementById("again").onclick = ()=>{ reset(); render(); };
   const cp=document.getElementById("copy");
   cp.onclick = async ()=>{
