@@ -1,0 +1,195 @@
+@charset "utf-8";
+
+/* common
+---------------------------------------------*/
+* {margin:0;padding:0;}
+
+a:link,a:visited {
+	color: #ffffff;
+	text-decoration:underline;
+}
+a:hover,a:active {
+	color: #d90909;
+	text-decoration:underline;
+}
+
+.impact   {font-size:20pt; font-weight:bold;}
+.impact2  {color:red;}
+.impact3  {background:yellow; color:#000;}
+#impact4  {underline;}
+.impact5  {background:#173B50; padding:2px 5px; color:#fff;}
+.impact6  {background:#f4f4f4; padding:3px; line-height:1.1;}
+.impact7  {background: #B60000; padding:2px 5px; color:#fff;}
+.style2   {color: #FF0000}
+.style3   {color: #333333}
+.style4   {color: #000000}
+
+
+img{ border: none;}
+
+/* ボタンのマウスオーバーで明るくする */
+.btn:hover {
+  filter: brightness(120%);
+}
+
+
+/* animation
+---------------------------------------------*/
+.feedInUp {
+	opacity: 0;
+	transform: translate(0,30px); 
+	-webkit-transform: translate(0,30px); 
+	transition: 1.5s;
+}
+.feedInUp_On {
+	opacity: 1.0;
+	transform: translate(0,0); 
+	-webkit-transform: translate(0,0);
+}
+
+/* layout
+---------------------------------------------*/
+
+
+/*TopIntro-Start*/
+body {
+	width: 100%;
+	height: 100%;
+	margin: 0px;
+	padding: 0px;
+	min-width: 1002px;
+	
+  background-image: url(../images/bg.jpg);
+	background-repeat: repeat;
+	background-attachment: fixed;
+	background-position: top center;
+	
+-webkit-text-size-adjust:none;
+	
+  text-align:center;
+  font-size:18px;
+  font-family: 'meiryo', 'Hiragino Kaku Gothic Pro', 'メイリオ', Meiryo, 'ＭＳ Ｐゴシック', sans-serif;
+    color: #383d5c;
+}
+
+#head1 { background: url("../images/header_01.png") no-repeat top center; height:    1338px; } 
+/* #head2 { background: url("../images/header_02.png") no-repeat top center; height:    846px; } */ 
+#head3 { background: url("../images/header_03.png") no-repeat top center; height:    2349px; } 
+#head4 { background: url("../images/header_04.png") no-repeat top center; height:    1700px; } 
+#head5 { background: url("../images/header_05.png") no-repeat top center; height:    1612px; } 
+#head6 { background: url("../images/header_06.png") no-repeat top center; height:    1256px; } 
+#head7 { background: url("../images/header_07.png") no-repeat top center; height:    1454px; } 
+#head8 { background: url("../images/header_08.png") no-repeat top center; height:    1265px; } 
+#head9 { background: url("../images/header_09.png") no-repeat top center; height:    1300px; } 
+#head10 { background: url("../images/header_10.png") no-repeat top center; height:    1921px; } 
+#head11 { background: url("../images/header_11.png") no-repeat top center; height:    776px; } 
+#head12 { background: url("../images/header_12.png") no-repeat top center; height:    1923px; } 
+#head13 { background: url("../images/header_13.png") no-repeat top center; height:    446px; } 
+#head14 { background: url("../images/header_14.png") no-repeat top center; height:    1106px; } 
+#head15 { background: url("../images/header_15.png") no-repeat top center; height:    1132px; } 
+#head16 { background: url("../images/header_16.png") no-repeat top center; height:    187px; } 
+
+
+#form_01 { background: url("../images/form_01.png") no-repeat top center; height:    468px; }
+#form_02 { background: url("../images/form_02.png") no-repeat top center; height:    416px; } 
+
+
+
+#wrap {
+
+	background-image: url("../images/wrap.png");
+	background-repeat: repeat-y;
+	background-position: center top;
+	background-position:50% 0%;
+}
+
+#wrapform {
+
+	background-image: url("../images/wrapform.png");
+	background-repeat: repeat-y;
+	background-position: center top;
+	background-position:50% 0%;
+}
+
+
+#container {
+
+	text-align:left;
+	width:1000px;
+	margin:0 auto;
+	
+	
+}
+
+#text {
+
+	text-align:left;
+	width:850px;
+	margin:0 auto;
+	
+	
+}
+
+#textwhite {
+
+	text-align:left;
+	width:850px;
+	margin:0 auto;
+	color: #fff;
+	
+}
+
+#texts2 {
+
+	text-align:left;
+	width:750px;
+	position: relative;
+	margin-top:170px;
+	margin-left:400px;
+	
+	
+}
+
+#texts3 {
+
+	text-align:left;
+	width:850px;
+	margin-top:250px;
+	margin-left:170px;
+	
+	
+}
+
+
+.container {
+
+	text-align:left;
+	width:1200px;
+	margin:0 auto;
+	
+	
+}
+
+.white {
+  color: #fff;
+}
+
+.text-center {
+　text-align: center;
+}
+
+#footer {  
+	background-color: #ffaeaa;
+}
+--------------------------- */
+
+ol,
+ul{
+	list-style-position: inside;
+	padding-left:10px;
+}
+ol li,
+ul li{
+	text-align:left;
+}
+
