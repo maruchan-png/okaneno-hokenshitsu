@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-31RWBDVB0P"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-31RWBDVB0P');
+</script>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="robots" content="noindex">
+<title>お金の保健室 3分診断</title>
+<meta name="description" content="直感で答えるだけ。あなたのお金の「今」を、お金の保健室が3分で診断します。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Klee+One:wght@600&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=Zen+Maru+Gothic:wght@500;700;900&display=swap" rel="stylesheet">
+<style>
+/* レイアウト：保健室の問診票を1枚ずつめくる。結果は「診断書」として出す */
+:root{
+  --paper:#f5f8f7; --card:#ffffff; --ink:#1d2a48; --ink-soft:#56607a; --rule:#d7e2df;
+  --mint:#dcefeb; --mint-deep:#2c7f78; --blush:#f8e4e0; --coral:#d65e52; --coral-ink:#ffffff;
+  --line-green:#06c755; --grid:rgba(44,127,120,.12);
+  --f-display:"Zen Maru Gothic","Hiragino Maru Gothic ProN",sans-serif;
+  --f-body:"Zen Kaku Gothic New","Hiragino Sans","Yu Gothic",sans-serif;
+  --f-hand:"Klee One","Zen Kaku Gothic New",cursive;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --paper:#111821;--card:#18212c;--ink:#e8edf3;--ink-soft:#a6b0c0;--rule:#2a3644;
+  --mint:#173033;--mint-deep:#7fd0c7;--blush:#2b1f22;--coral:#f0877b;--coral-ink:#1a0f0d;--grid:rgba(127,208,199,.08);color-scheme:dark}}
+:root[data-theme="dark"]{
+  --paper:#111821;--card:#18212c;--ink:#e8edf3;--ink-soft:#a6b0c0;--rule:#2a3644;
+  --mint:#173033;--mint-deep:#7fd0c7;--blush:#2b1f22;--coral:#f0877b;--coral-ink:#1a0f0d;--grid:rgba(127,208,199,.08);color-scheme:dark}
+*{box-sizing:border-box}
+body{margin:0;min-height:100%;background:var(--paper);color:var(--ink);font-family:var(--f-body);line-height:1.8;letter-spacing:.02em;
+  background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);background-size:28px 28px}
+.wrap{max-width:560px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:24px 48px}
+h1,h2,h3{font-family:var(--f-display);margin:0;line-height:1.45;text-wrap:balance}
+p{margin:0}
+.brand{display:flex;align-items:center;gap:10px;font-family:var(--f-display);font-weight:700;color:var(--ink)}
+.brand i{width:30px;height:30px;border-radius:9px;background:var(--mint);display:grid;place-items:center;flex:none}
+.card{background:var(--card);border:1px solid var(--rule);border-radius:20px;padding:28px 22px;margin-top:18px;box-shadow:0 1px 0 rgba(29,42,72,.05),0 12px 30px -18px rgba(29,42,72,.35)}
+.eyebrow{font-family:var(--f-display);font-size:.8rem;font-weight:700;letter-spacing:.16em;color:var(--mint-deep)}
+.intro h1{font-size:2rem;margin-top:8px;font-weight:900}
+.intro h1 em{font-style:normal;color:var(--coral)}
+.intro p{margin-top:12px;color:var(--ink-soft)}
+.facts{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px;padding:0;list-style:none}
+.facts li{background:var(--mint);border-radius:999px;padding:4px 14px;font-size:.85rem;font-weight:700;color:var(--mint-deep)}
+.btn{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;border:0;border-radius:999px;padding:16px 20px;font-family:var(--f-display);font-weight:700;font-size:1.05rem;cursor:pointer;text-decoration:none}
+.btn-coral{background:var(--coral);color:var(--coral-ink);margin-top:24px}
+.btn-line{background:var(--line-green);color:#fff}
+.btn-plain{background:transparent;color:var(--ink-soft);font-weight:500;font-size:.92rem;padding:10px}
+.progress{display:flex;align-items:center;gap:12px;margin-top:18px}
+.bar{flex:1;height:8px;border-radius:999px;background:var(--rule);overflow:hidden}
+.bar span{display:block;height:100%;background:var(--coral);border-radius:999px;transition:width .3s ease}
+.count{font-size:.85rem;font-variant-numeric:tabular-nums;color:var(--ink-soft);white-space:nowrap}
+.q-no{font-family:var(--f-hand);font-weight:600;color:var(--coral);font-size:1rem}
+.q-text{font-size:1.35rem;margin-top:4px}
+.q-hint{font-size:.88rem;color:var(--ink-soft);margin-top:6px}
+.choices{display:grid;gap:10px;margin-top:20px}
+.choice{display:flex;align-items:center;gap:14px;width:100%;text-align:left;background:var(--paper);border:1.5px solid var(--rule);border-radius:14px;padding:14px 16px;font:inherit;font-weight:500;color:var(--ink);cursor:pointer;transition:border-color .15s,transform .1s}
+.choice:hover{border-color:var(--mint-deep)}
+.choice:active{transform:scale(.99)}
+.choice .box{flex:none;width:22px;height:22px;border:2px solid var(--ink);border-radius:5px}
+.back{margin-top:10px}
+/* result */
+.chart{position:relative;overflow:hidden}
+.chart::before{content:"";position:absolute;inset:0 0 auto;height:6px;background:repeating-linear-gradient(90deg,var(--coral) 0 14px,transparent 14px 22px)}
+.chart-head{display:flex;justify-content:space-between;align-items:baseline;border-bottom:2px solid var(--ink);padding-bottom:10px}
+.chart-head span{font-size:.8rem;color:var(--ink-soft)}
+.dx-label{margin-top:18px;font-size:.85rem;font-weight:700;color:var(--mint-deep);letter-spacing:.1em}
+.dx-name{font-size:1.7rem;font-weight:900;margin-top:4px;color:var(--coral)}
+.dx-lead{margin-top:12px;font-family:var(--f-hand);font-weight:600;font-size:1.08rem;line-height:1.8}
+.symptoms{margin:18px 0 0;padding:16px 18px;background:var(--paper);border-radius:12px;list-style:none;display:grid;gap:8px}
+.symptoms li{display:flex;gap:10px;font-size:.95rem}
+.symptoms li::before{content:"✓";color:var(--coral);font-weight:700}
+.rx{margin-top:22px;border:2px dashed var(--coral);border-radius:16px;padding:20px 18px;background:var(--blush)}
+.rx h3{font-size:1.15rem}
+.rx p{margin-top:8px;font-size:.95rem}
+.code{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:14px;background:var(--card);border-radius:12px;padding:12px 16px;border:1px solid var(--rule)}
+.code b{font-family:var(--f-display);font-size:1.4rem;letter-spacing:.08em}
+.copy{border:1.5px solid var(--ink);background:transparent;color:var(--ink);border-radius:999px;padding:6px 14px;font:inherit;font-size:.85rem;font-weight:700;cursor:pointer;white-space:nowrap}
+.rx .btn-line{margin-top:14px}
+.note{font-size:.8rem;color:var(--ink-soft);margin-top:18px}
+a:focus-visible,button:focus-visible{outline:3px solid var(--coral);outline-offset:3px}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="brand"><i><svg width="16" height="16" viewBox="0 0 18 18" aria-hidden="true"><rect x="6.5" y="1" width="5" height="16" rx="2" fill="var(--coral)"/><rect x="1" y="6.5" width="16" height="5" rx="2" fill="var(--coral)"/></svg></i>お金の保健室</div>
+  <main id="app" aria-live="polite"></main>
+</div>
+<script>
+// ===== 設定：LINE公式アカウントのベーシックID（@から始まるID）を入れると、結果からワンタップで送れます =====
+const LINE_ID = ""; // 例: "@123abcde"
+
+const TYPES = {
+  mix:   {code:"処方箋A", name:"財布ごちゃまぜタイプ", lead:"事業のお金と家のお金が、同じお財布で動いているかもしれません。頑張って稼いでいるのに、残っている実感がうすい状態です。", sym:["事業用と生活用の口座が分かれていない","毎月いくら残っているか、すぐ言えない","確定申告の時期に慌てがち"]},
+  ins:   {code:"処方箋B", name:"保険入りすぎタイプ", lead:"なんとなく入った保険が、家計を少しずつ圧迫しているかもしれません。必要な保障を残しつつ、整理できる余地がありそうです。", sym:["入っている保険の数や中身がうろ覚え","すすめられるままに入った保険がある","保険料が毎月の固定費の中で大きい"]},
+  grow:  {code:"処方箋C", name:"貯めるのは得意、増やすのは不安タイプ", lead:"コツコツ貯める力はしっかりあります。次は、そのお金に働いてもらう準備をする段階です。", sym:["NISAやiDeCoが気になっているけど、まだ","預金がいちばん安心だと思っている","何から始めればいいかわからない"]},
+  future:{code:"処方箋D", name:"未来ぼんやり不安タイプ", lead:"老後や教育費のことを考えると、なんとなく不安になる状態です。数字にして見える形にすると、不安はぐっと小さくなります。", sym:["将来いくら必要か、イメージがわかない","考えると不安になるので、つい後回し","今のペースで大丈夫か確かめたい"]},
+  attack:{code:"処方箋E", name:"攻めどきタイプ", lead:"お金の土台はかなり整っています。今は、やりたいことに向けて次の一手を考えるタイミングです。", sym:["お金の流れはおおむね把握できている","備えもある程度できている","もう一段、仕事や暮らしを広げたい"]}
+};
+const ORDER = ["mix","ins","grow","future","attack"];
+
+const Q = {
+  age:{text:"年代を教えてください", opts:[["20代",{}],["30代",{}],["40代",{}],["50代以上",{}]]},
+  work:{text:"今の働き方は？", opts:[["個人事業主・フリーランス",{}],["会社経営",{}],["会社員＋副業",{}],["その他",{}]]},
+  target:{text:"お金のことで、いちばん解決したいのは？", hint:"直感で選んでください", opts:[["会社・仕事のお金","biz"],["家・個人のお金","life"],["どっちも！","both"]]},
+  b1:{text:"事業用と生活用の口座、分けていますか？", opts:[["きっちり分けている",{attack:2}],["なんとなく分けている",{mix:2}],["分けていない",{mix:3}]]},
+  b2:{text:"毎月、手元にいくら残っているか、すぐ言えますか？", opts:[["すぐ言える",{attack:2}],["だいたいなら",{mix:1,future:1}],["正直わからない",{mix:2,future:1}]]},
+  b3:{text:"自分の老後の備え（小規模企業共済・iDeCoなど）は？", opts:[["もうしている",{attack:1}],["気になるけど、まだ",{grow:2}],["そもそもよく知らない",{future:2,grow:1}]]},
+  p1:{text:"入っている保険はいくつありますか？", hint:"医療・生命・学資・貯蓄型などすべて", opts:[["0〜1つ",{attack:1}],["2〜3つ",{ins:1}],["4つ以上",{ins:3}],["正直わからない",{ins:3}]]},
+  p2:{text:"家計で、毎月いくら残っているか言えますか？", opts:[["すぐ言える",{attack:2}],["だいたいなら",{future:1}],["わからない",{future:2,mix:1}]]},
+  p3:{text:"NISAやiDeCo、始めていますか？", opts:[["もう始めている",{attack:2}],["気になるけど、まだ",{grow:3}],["よくわからない",{grow:1,future:1}]]},
+  p4:{text:"老後や教育費の見通し、立っていますか？", opts:[["だいたい見えている",{attack:1}],["なんとなく",{future:2}],["考えると不安になる",{future:3}]]}
+};
+const BRANCH = {biz:["b1","b2","b3","p1"], life:["p1","p2","p3","p4"], both:["b1","b2","p1","p3","p4"]};
+
+const app = document.getElementById("app");
+let state;
+function reset(){ state = {flow:["age","work","target"], i:0, score:{}, history:[]}; }
+
+function esc(s){return String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]))}
+
+function intro(){
+  app.innerHTML = `
+  <section class="card intro">
+    <div class="eyebrow">お金の保健室</div>
+    <h1>お金の<em>3分診断</em></h1>
+    <p>直感でタップするだけ。あなたのお金の「今」に、診断名をつけます。最後に、あなた専用の処方箋をLINEでお届けします。</p>
+    <ul class="facts"><li>全7〜8問</li><li>約3分</li><li>名前の入力なし</li></ul>
+    <button class="btn btn-coral" id="start">診断をはじめる</button>
+  </section>`;
+  document.getElementById("start").onclick = () => { reset(); render(); };
+}
+
+function render(){
+  const key = state.flow[state.i];
+  const q = Q[key];
+  const total = state.flow.length > 3 ? state.flow.length : 3 + 4;
+  const n = state.i + 1;
+  app.innerHTML = `
+  <div class="progress"><div class="bar"><span style="width:${Math.round(state.i/total*100)}%"></span></div><span class="count">${n} / ${total}</span></div>
+  <section class="card">
+    <div class="q-no">Q${n}.</div>
+    <h2 class="q-text">${esc(q.text)}</h2>
+    ${q.hint?`<p class="q-hint">${esc(q.hint)}</p>`:""}
+    <div class="choices">${q.opts.map((o,j)=>`<button class="choice" data-j="${j}"><span class="box" aria-hidden="true"></span>${esc(o[0])}</button>`).join("")}</div>
+    ${state.i>0?`<button class="btn btn-plain back" id="back">← ひとつ戻る</button>`:""}
+  </section>`;
+  app.querySelectorAll(".choice").forEach(b=>b.onclick=()=>answer(key, q.opts[+b.dataset.j][1]));
+  const back=document.getElementById("back"); if(back) back.onclick=goBack;
+  app.querySelector(".choice")?.focus({preventScroll:true});
+}
+
+function answer(key, val){
+  state.history.push({key, score:{...state.score}, flow:[...state.flow]});
+  if(key==="target"){ state.flow = state.flow.slice(0,3).concat(BRANCH[val]); }
+  else { for(const k in val) state.score[k]=(state.score[k]||0)+val[k]; }
+  state.i++;
+  if(state.i >= state.flow.length) result(); else render();
+  window.scrollTo({top:0});
+}
+function goBack(){
+  const h = state.history.pop(); if(!h) return;
+  state.score=h.score; state.flow=h.flow; state.i--; render();
+}
+
+function result(){
+  let best="attack", bestScore=-1;
+  for(const t of ORDER){ const s=state.score[t]||0; if(s>bestScore){best=t;bestScore=s;} }
+  const t = TYPES[best];
+  try{ gtag('event','shindan_result',{result_type:t.name}); }catch(e){}
+  const lineHref = LINE_ID ? `https://line.me/R/oaMessage/${encodeURIComponent(LINE_ID)}/?${encodeURIComponent(t.code)}` : "";
+  app.innerHTML = `
+  <div class="progress"><div class="bar"><span style="width:100%"></span></div><span class="count">診断完了</span></div>
+  <section class="card chart">
+    <div class="chart-head"><h2 style="font-size:1.05rem">お金の診断書</h2><span>お金の保健室</span></div>
+    <div class="dx-label">あなたの診断名</div>
+    <div class="dx-name">${esc(t.name)}</div>
+    <p class="dx-lead">${esc(t.lead)}</p>
+    <ul class="symptoms">${t.sym.map(s=>`<li>${esc(s)}</li>`).join("")}</ul>
+    <div class="rx">
+      <h3>あなた専用の処方箋をお渡しします</h3>
+      <p>LINEのトークで、下の言葉を送ってください。このタイプの方に向けた「今日からできること」が届きます。</p>
+      <div class="code"><b>${esc(t.code)}</b><button class="copy" id="copy">コピー</button></div>
+      ${lineHref?`<a class="btn btn-line" href="${lineHref}">LINEで「${esc(t.code)}」を送る</a>`:""}
+    </div>
+    <button class="btn btn-plain" id="again" style="margin-top:14px">もう一度診断する</button>
+    <p class="note">※この診断は一般的な傾向をお伝えするものです。くわしくは個別相談で一緒に確認しましょう。</p>
+  </section>`;
+  document.getElementById("again").onclick = ()=>{ reset(); render(); };
+  const cp=document.getElementById("copy");
+  cp.onclick = async ()=>{
+    try{ await navigator.clipboard.writeText(t.code); cp.textContent="コピーしました"; }
+    catch(e){ const r=document.createRange(); r.selectNodeContents(cp.previousElementSibling); const s=getSelection(); s.removeAllRanges(); s.addRange(r); cp.textContent="選択しました"; }
+  };
+}
+
+intro();
+</script>
+</body>
+</html>
